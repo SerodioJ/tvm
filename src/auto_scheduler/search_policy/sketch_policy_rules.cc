@@ -65,14 +65,14 @@ inline bool ShouldAlwaysBeInlined(const SketchPolicyNode& policy, const State& s
     return false;
   }
 
-  if (IsGPUTask(task)) {  // Greedily inline all inlinable ops on gpu
-    return true;
-  } else {
+  // if (IsGPUTask(task)) {  // Greedily inline all inlinable ops on gpu
+  //   return true;
+  // } else {
     // Only always-inline strict-inlinable ops on cpu.
     // The computation location of other ops will be tuned by InitChangeComputeLocation
     // and MutateComputeLocation.
-    return IsStrictlyInlineable(task, state, stage_id);
-  }
+  return IsStrictlyInlineable(task, state, stage_id);
+  // }
 }
 
 SketchGenerationRule::ConditionKind RuleAlwaysInline::MeetCondition(const SketchPolicyNode& policy,
